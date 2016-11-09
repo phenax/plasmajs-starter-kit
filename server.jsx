@@ -19,15 +19,19 @@ export default class App extends React.Component {
 	// (NOTE: You can also do an App.port= 8080)
 	static get port() { return 8080; }
 
+	// Pass https config as an  object to enable HTTPS
+	static get config() {
+		return null;
+	}
 
 	constructor(p) {
 		super(p);
 
-		this._apiRequestHandler= this._apiRequestHandler.bind(this);
+		this._apiCallHandler= this._apiCallHandler.bind(this);
 	}
 
 	// API request handler for api routes
-	_apiRequestHandler() {
+	_apiCallHandler() {
 
 		// Some expensive promise that takes 400ms to resolve
 		return new Promise((resolve, reject) => {
@@ -40,7 +44,6 @@ export default class App extends React.Component {
 			}, 400);
 		});
 	}
-
 
 	render() {
 
@@ -55,11 +58,12 @@ export default class App extends React.Component {
 
 				<StaticContentRouter {...this.props} dir='public' hasPrefix={true} compress={true} />
 
-				<APIRoute {...this.props} method='GET' path='/api/new' controller={this._apiRequestHandler} />
-				<APIRoute {...this.props} method='POST' path='/api/new' controller={this._apiRequestHandler} />
+				{ /* Move all API routes to a seperate component */ }
+				<APIRoute {...this.props} method='GET'  path='/api/get'  controller={this._apiCallHandler} />
+				<APIRoute {...this.props} method='POST' path='/api/post' controller={this._apiCallHandler} />
 
 				<HeadLayout title='Hello Awesomeness' />
-				
+
 				<AllRoutes {...this.props} />
 
 				<Logger {...this.props} color={true} />

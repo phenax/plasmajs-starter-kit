@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
 	Server,
 	APIRoute,
@@ -19,16 +18,12 @@ export default class App extends React.Component {
 	// (NOTE: You can also do an App.port= 8080)
 	static get port() { return 8080; }
 
-	// Pass https config as an  object to enable HTTPS
-	static get config() {
-		return null;
-	}
-
 	constructor(p) {
 		super(p);
 
 		this._apiCallHandler= this._apiCallHandler.bind(this);
 	}
+
 
 	// API request handler for api routes
 	_apiCallHandler() {
@@ -45,6 +40,7 @@ export default class App extends React.Component {
 		});
 	}
 
+
 	render() {
 
 		// Server wrapper
@@ -54,6 +50,7 @@ export default class App extends React.Component {
 		//   - The router component and the routes
 		//   - Logger middleware
 		return (
+
 			<Server>
 
 				<StaticContentRouter {...this.props} dir='public' hasPrefix={true} compress={true} />
@@ -62,7 +59,7 @@ export default class App extends React.Component {
 				<APIRoute {...this.props} method='GET'  path='/api/get'  controller={this._apiCallHandler} />
 				<APIRoute {...this.props} method='POST' path='/api/post' controller={this._apiCallHandler} />
 
-				<HeadLayout title='Hello Awesomeness' />
+				<HeadLayout title='Get started with PlasmaJS' />
 
 				<AllRoutes {...this.props} />
 

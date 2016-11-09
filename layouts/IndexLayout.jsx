@@ -7,7 +7,12 @@ export default class IndexLayout extends React.Component {
 
 		return (
 			<div>
-				<div>Awesomeness on the Index</div>
+
+				<h2>My index awesomeness</h2>
+
+				<div>n clicks</div>
+
+				<button>Click Me!</button>
 			</div>
 		);
 	}

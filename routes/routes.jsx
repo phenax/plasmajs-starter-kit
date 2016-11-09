@@ -3,15 +3,7 @@ import { Route, Router } from 'plasmajs';
 
 import IndexLayout from '../layouts/IndexLayout.jsx';
 
-// 
-// Router(history=History API instantiation, wrapper= The content wrapper(or the body tag))
-//   - Route(
-//            path= The route path, 
-//            component= Layout component, 
-//            controller= The route controller(Function executed before rendering the component),
-//            errorHandler= True for error handlers
-//          )
-//
+
 export default (history, wrapper=null)=> (
 
 	<Router history={history} wrapper={wrapper}>

@@ -1,14 +1,3 @@
-// require('./node_react/start.jsx')();
-
-/*
-
-    "babel-core": "^6.18.2",
-    "babel-plugin-transform-object-rest-spread": "^6.16.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-
- */
-
 import React from 'react';
 
 import {
@@ -19,16 +8,23 @@ import {
 } from 'plasmajs';
 
 
-import getRoutes from './routes/getRoutes.server.jsx';
+import AllRoutes from './routes/getRoutes.server.jsx';
 import { HeadLayout } from './layouts/WrapperLayouts.jsx';
 
 
 // The app component
 export default class App extends React.Component {
 
-
 	// To specify the port name to run the program on
+	// (NOTE: You can also do an App.port= 8080)
 	static get port() { return 8080; }
+
+
+	constructor(p) {
+		super(p);
+
+		this._apiRequestHandler= this._apiRequestHandler.bind(this);
+	}
 
 	// API request handler for api routes
 	_apiRequestHandler() {
@@ -37,13 +33,14 @@ export default class App extends React.Component {
 		return new Promise((resolve, reject) => {
 
 			setTimeout(() => {
-			
-				resolve({
-					wow: "cool cool"
-				});
+
+				const { method, url }= this.props.request;
+
+				resolve({ method, url });
 			}, 400);
 		});
 	}
+
 
 	render() {
 
@@ -56,12 +53,14 @@ export default class App extends React.Component {
 		return (
 			<Server>
 
-				<StaticContentRouter {...this.props} dir='public' hasPrefix={true} />
+				<StaticContentRouter {...this.props} dir='public' hasPrefix={true} compress={true} />
 
+				<APIRoute {...this.props} method='GET' path='/api/new' controller={this._apiRequestHandler} />
 				<APIRoute {...this.props} method='POST' path='/api/new' controller={this._apiRequestHandler} />
 
 				<HeadLayout title='Hello Awesomeness' />
-				{getRoutes(this.props.request, this.props.response)}
+				
+				<AllRoutes {...this.props} />
 
 				<Logger {...this.props} color={true} />
 

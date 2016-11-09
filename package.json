@@ -1,11 +1,11 @@
 {
-  "name": "plasmajs-example",
-  "version": "0.0.1",
-  "description": "",
+  "name": "plasmajs-starter-kit",
+  "version": "0.0.0",
+  "description": "The starter kit for making a web app in plasmaJS",
   "main": "server.jsx",
   "scripts": {
-    "start": "plasmajs ./server.jsx",
-    "start:watch": "nodemon -e jsx --exec ./node_react/run ./server.jsx",
+    "start": "plasmajs .",
+    "start:watch": "nodemon -e jsx --exec plasmajs .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Akshay Nair <phenax5@gmail.com>",

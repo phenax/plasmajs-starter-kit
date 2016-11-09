@@ -12,5 +12,6 @@ export default (history, wrapper=null)=> (
 		<Route path='/about' component={AboutLayout} />
 
 		<Route errorHandler={true} component={() => <div>Error</div>} />
+
 	</Router>
 );

@@ -12,6 +12,19 @@ const isProduction= (process.env.NODE_ENV == 'production');
 
 console.log(process.env.NODE_ENV+" mode");
 
+
+
+const plasmaJSExclude= (fileName, exceptionDir)=> {
+
+	if(exceptionDir && fileName.includes(`node_modules/${exceptionDir}`))
+		return false;
+
+	if(fileName.includes('node_modules'))
+		return true;
+
+	return false;
+};
+
 const webpackConfig = {
 
 	node: {
@@ -33,9 +46,15 @@ const webpackConfig = {
 		loaders: [
 			{
 				test: /\.jsx?/,
-				exclude: /node_modules(?!\/plasmajs)/gi,
+				exclude: (f) => plasmaJSExclude(f, 'plasmajs'),
 				include: APP_DIR,
 				loader: 'babel'
+			},
+			{
+				test: /\.json?/,
+				exclude: (f) => plasmaJSExclude(f, 'mime'),
+				include: APP_DIR,
+				loader: 'json'
 			}
 		]
 	},

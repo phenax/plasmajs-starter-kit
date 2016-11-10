@@ -1,6 +1,6 @@
 
 # PlasmaJS Starter Kit
-A Starterkit for the [plasmajs framework](https://github.com/phenax/plasmajs)
+A Starterkit for the [PlasmaJS framework](https://github.com/phenax/plasmajs)
 
 ## Stuff
 * SASS (gulp to transpile)

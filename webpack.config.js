@@ -1,9 +1,9 @@
 const webpack = require('webpack');
-const path = require('path');
+const {resolve} = require('path');
 
 
-const BUILD_DIR= path.resolve(__dirname, 'public/js');         // Build directory
-const APP_DIR= path.resolve(__dirname, 'front_end/js_es6');    // Source directory
+const BUILD_DIR= resolve(__dirname, 'public/js');         // Build directory
+const APP_DIR= __dirname;                                 // Source directory
 
 
 process.env.NODE_ENV= process.env.NODE_ENV || 'development';
@@ -14,9 +14,13 @@ console.log(process.env.NODE_ENV+" mode");
 
 const webpackConfig = {
 
+	node: {
+		fs: "empty"
+	},
+
 	entry: {
 
-		script: APP_DIR + '/app.js',
+		script: resolve(APP_DIR, 'client/client.jsx'),
 	},
 
 	output: {
@@ -28,8 +32,8 @@ const webpackConfig = {
 
 		loaders: [
 			{
-				test: /\.js?/,
-				exclude: /node_modules/,
+				test: /\.jsx?/,
+				exclude: /node_modules(?!\/plasmajs)/gi,
 				include: APP_DIR,
 				loader: 'babel'
 			}

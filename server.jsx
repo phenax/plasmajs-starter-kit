@@ -7,7 +7,7 @@ import {
 } from 'plasmajs';
 
 
-import AllRoutes from './routes/getRoutes.server.jsx';
+import AllRoutesWrapper from './routes/getRoutes.server.jsx';
 import { HeadLayout } from './layouts/WrapperLayouts.jsx';
 
 
@@ -56,13 +56,13 @@ export default class App extends React.Component {
 
 				<StaticContentRouter {...this.props} dir='public' hasPrefix={true} compress={true} />
 
-				{ /* Move all API routes to a seperate component */ }
+				{ /* Move all API routes and their controllers to a seperate component */ }
 				<APIRoute {...this.props} method='GET'  path='/api/get'  controller={this._apiCallHandler} />
 				<APIRoute {...this.props} method='POST' path='/api/post' controller={this._apiCallHandler} />
 
 				<HeadLayout title='Get started with PlasmaJS' />
 
-				<AllRoutes {...this.props} />
+				<AllRoutesWrapper {...this.props} />
 
 				<Logger {...this.props} color={true} />
 

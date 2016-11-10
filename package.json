@@ -1,27 +1,39 @@
 {
   "name": "plasmajs-starter-kit",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The starter kit for making a web app in plasmaJS",
   "main": "server.jsx",
   "scripts": {
+
     "start": "plasmajs .",
     "start:watch": "nodemon -e jsx --exec plasmajs .",
+
+    "build:js": "webpack",
+    "build:js:watch": "webpack -w",
+    "build:js:prod": "webpack -p",
+
+    "build:css": "gulp buildSASS",
+    "build:css:watch": "gulp",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Akshay Nair <phenax5@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "babel-core": "^6.18.2",
-    "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
     "plasmajs": "^0.1.4",
     "react": "^15.3.2"
   },
   "devDependencies": {
     "babel-loader": "^6.2.7",
-    "json-loader": "^0.5.4",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sass": "^2.3.2",
     "react-dom": "^15.3.2",
-    "webpack": "^1.13.3"
+    "webpack": "^2.1.0-beta.25"
   }
 }

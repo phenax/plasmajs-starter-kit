@@ -17,15 +17,18 @@ export class HeadLayout extends React.Component {
 
 					// A little bit of inline css
 					__html: `
-						:root {
-							font-size: 16px;
-							color: #333;
-							font-family: 'Helvetica', 'Arial', 'sans-serif';
-						}
-
-						html, body {
+						ul {
+							list-style: none;
 							margin: 0;
 							padding: 0;
+						}
+
+						a {
+							color: #369;
+						}
+
+						h2 {
+							color: #555;
 						}
 					`.replace(/\s+/gi, ' ') // For removing whitespaces
 				}} />
@@ -50,8 +53,8 @@ export class BodyLayout extends React.Component {
 
 				<div id='mainApp'>{this.props.children}</div>
 
-				<link rel='stylesheet' href='/public/css/style.css' />
 				<script src='/public/js/script.js' defer async />
+				<link rel='stylesheet' href='/public/css/style.css' />
 			</body>
 		);
 	}

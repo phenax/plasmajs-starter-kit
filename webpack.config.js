@@ -4,10 +4,11 @@ const {resolve} = require('path');
 const BUILD_DIR= resolve(__dirname, 'public/js');         // Build directory
 const APP_DIR= __dirname;                                 // Source directory
 
+
 const webpackConfig = {
 
 	entry: {
-		script: resolve(APP_DIR, 'client/client.jsx'),
+		script: resolve(APP_DIR, 'client/jsx/client.jsx'),
 	},
 
 	output: {

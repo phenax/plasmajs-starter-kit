@@ -1,0 +1,33 @@
+
+:root {
+	font-size: 16px;
+	color: #333;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+* {
+	box-sizing: border-box;
+
+	&::after, &::before {
+		content: '';
+	}
+}
+
+ul {
+	padding: 1em;
+	text-align: center;
+
+	li {
+		display: inline-block;
+
+		a {
+			display: inline-block;
+			padding: .5em 1em;
+			text-decoration: none;
+		}
+	}
+}

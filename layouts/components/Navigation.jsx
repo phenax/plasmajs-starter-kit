@@ -12,7 +12,9 @@ export default class Navigation extends React.Component {
 
 					<li><Link to='/'>Home</Link></li>
 
-					<li><Link to='/about'>About Page</Link></li>
+					<li><Link to='/about'>About</Link></li>
+
+					<li><Link to='/this-page-doesnt-exist'>Error</Link></li>
 
 				</ul>
 

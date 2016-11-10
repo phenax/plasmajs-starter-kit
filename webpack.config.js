@@ -6,17 +6,17 @@ const BUILD_DIR= resolve(__dirname, 'public/js');         // Build directory
 const APP_DIR= __dirname;                                 // Source directory
 
 
-process.env.NODE_ENV= process.env.NODE_ENV || 'development';
+/**
+ * Function for excluding files from the loader
+ * 
+ * @param  {string}   fileName      The name of the file to check
+ * @param  {string}   exceptionDir  The exception in node_modules
+ * 
+ * @return {boolean}                Is excluded if true
+ */
+const plasmaJSExclude= (fileName, exceptionDir=null)=> {
 
-const isProduction= (process.env.NODE_ENV == 'production');
-
-console.log(process.env.NODE_ENV+" mode");
-
-
-
-const plasmaJSExclude= (fileName, exceptionDir)=> {
-
-	if(exceptionDir && fileName.includes(`node_modules/${exceptionDir}`))
+	if((exceptionDir || exceptionDir === '') && fileName.includes(`node_modules/${exceptionDir}`))
 		return false;
 
 	if(fileName.includes('node_modules'))
@@ -24,6 +24,7 @@ const plasmaJSExclude= (fileName, exceptionDir)=> {
 
 	return false;
 };
+
 
 const webpackConfig = {
 
@@ -62,11 +63,14 @@ const webpackConfig = {
 	devtool: "source-map"
 };
 
-if(isProduction) {
+
+// Stuff for production
+if(process.argv.includes('-p')) {
 	
 	webpackConfig.devtool= false;
 
 	webpackConfig.plugins= [
+
 		new webpack.optimize.DedupePlugin(),
 
 		new webpack.LoaderOptionsPlugin({
@@ -75,14 +79,18 @@ if(isProduction) {
 		}),
 		
 		new webpack.optimize.UglifyJsPlugin({
+
 			minimize: true,
+
 			compress: {
 				screw_ie8: true,
 				warnings: false
 			},
+
 			output: {
 				comments: false
 			},
+
 			sourceMap: false
 		}),
 		

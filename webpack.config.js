@@ -6,10 +6,6 @@ const APP_DIR= __dirname;                                 // Source directory
 
 const webpackConfig = {
 
-	node: {
-		fs: "empty"
-	},
-
 	entry: {
 		script: resolve(APP_DIR, 'client/client.jsx'),
 	},
@@ -22,6 +18,7 @@ const webpackConfig = {
 	module: {
 
 		loaders: [
+
 			{
 				test: /\.jsx?/,
 				exclude: /node_modules\/(?!plasmajs)/,
@@ -43,11 +40,6 @@ if(process.argv.includes('-p')) {
 	webpackConfig.plugins= [
 
 		new webpack.optimize.DedupePlugin(),
-
-		new webpack.LoaderOptionsPlugin({
-			minimize: true,
-			debug: false
-		}),
 		
 		new webpack.optimize.UglifyJsPlugin({
 

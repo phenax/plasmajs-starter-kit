@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'plasmajs';
+import { Link } from 'plasmajs/router/Router.jsx';
 
 export default class Navigation extends React.Component {
 

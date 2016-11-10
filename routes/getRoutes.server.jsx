@@ -1,5 +1,5 @@
 
-import { NodeHistoryAPI } from 'plasmajs';
+import { NodeHistoryAPI } from 'plasmajs/router/Router.jsx';
 
 import getRoutes from './routes.jsx';
 import { BodyLayout } from '../layouts/WrapperLayouts.jsx';

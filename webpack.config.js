@@ -1,30 +1,8 @@
 const webpack = require('webpack');
 const {resolve} = require('path');
 
-
 const BUILD_DIR= resolve(__dirname, 'public/js');         // Build directory
 const APP_DIR= __dirname;                                 // Source directory
-
-
-/**
- * Function for excluding files from the loader
- * 
- * @param  {string}   fileName      The name of the file to check
- * @param  {string}   exceptionDir  The exception in node_modules
- * 
- * @return {boolean}                Is excluded if true
- */
-const plasmaJSExclude= (fileName, exceptionDir=null)=> {
-
-	if((exceptionDir || exceptionDir === '') && fileName.includes(`node_modules/${exceptionDir}`))
-		return false;
-
-	if(fileName.includes('node_modules'))
-		return true;
-
-	return false;
-};
-
 
 const webpackConfig = {
 
@@ -33,7 +11,6 @@ const webpackConfig = {
 	},
 
 	entry: {
-
 		script: resolve(APP_DIR, 'client/client.jsx'),
 	},
 
@@ -47,17 +24,11 @@ const webpackConfig = {
 		loaders: [
 			{
 				test: /\.jsx?/,
-				exclude: (f) => plasmaJSExclude(f, 'plasmajs'),
+				exclude: /node_modules\/(?!plasmajs)/,
 				include: APP_DIR,
 				loader: 'babel'
-			},
-			{
-				test: /\.json?/,
-				exclude: (f) => plasmaJSExclude(f, 'mime'),
-				include: APP_DIR,
-				loader: 'json'
 			}
-		]
+		],
 	},
 
 	devtool: "source-map"

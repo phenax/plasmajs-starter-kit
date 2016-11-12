@@ -4,17 +4,13 @@
   "description": "The starter kit for making a web app in plasmaJS",
   "main": "server.jsx",
   "scripts": {
-
     "start": "plasmajs .",
     "start:watch": "nodemon -e jsx --exec plasmajs .",
-
     "build:js": "webpack",
     "build:js:watch": "webpack -w",
     "build:js:prod": "webpack -p",
-
     "build:css": "gulp buildSASS",
     "build:css:watch": "gulp",
-
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Akshay Nair <phenax5@gmail.com>",
@@ -24,7 +20,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
-    "plasmajs": "^0.1.4",
+    "plasmajs": "^0.1.5",
     "react": "^15.3.2"
   },
   "devDependencies": {

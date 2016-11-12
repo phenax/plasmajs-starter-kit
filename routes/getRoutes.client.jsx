@@ -1,5 +1,5 @@
 
-import { HistoryAPI } from 'plasmajs/router/Router.jsx';
+import { HistoryAPI } from 'plasmajs/router';
 
 import getRoutes from './routes.jsx';
 

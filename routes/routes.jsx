@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router } from 'plasmajs/router/Router.jsx';
+import { Route, Router } from 'plasmajs/router';
 
 import IndexLayout from '../layouts/IndexLayout.jsx';
 import AboutLayout from '../layouts/AboutLayout.jsx';

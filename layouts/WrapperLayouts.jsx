@@ -8,10 +8,11 @@ export class HeadLayout extends React.Component {
 	render() {
 
 		return (
-
 			<head>
 
 				<title>{this.props.title || ""}</title>
+
+				{this.props.children}
 
 				<style dangerouslySetInnerHTML={{
 

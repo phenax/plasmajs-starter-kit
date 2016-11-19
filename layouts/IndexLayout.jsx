@@ -23,7 +23,6 @@ export default class IndexLayout extends React.Component {
 
 		return (
 			<div>
-
 				<h2>My index awesomeness</h2>
 
 				<Navigation />

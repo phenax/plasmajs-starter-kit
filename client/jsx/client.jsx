@@ -1,8 +1,10 @@
+import React from 'react';
 import {render} from 'react-dom';
 
-import getRoutes from '../../routes/getRoutes.client.jsx';
+import AllRoutes from '../../routes/getRoutes.client.jsx';
 
 render(
-	getRoutes(),
+	<AllRoutes />,
 	document.getElementById('mainApp')
 );
+

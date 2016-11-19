@@ -4,7 +4,6 @@ const {resolve} = require('path');
 const BUILD_DIR= resolve(__dirname, 'public/js');         // Build directory
 const APP_DIR= __dirname;                                 // Source directory
 
-
 const webpackConfig = {
 
 	entry: {
@@ -17,16 +16,17 @@ const webpackConfig = {
 	},
 
 	module: {
-
 		loaders: [
-
 			{
-				test: /\.jsx?/,
+				test: /\.jsx$/,
 				exclude: /node_modules\/(?!plasmajs)/,
-				include: APP_DIR,
-				loader: 'babel'
+				loader: 'babel-loader'
 			}
 		],
+	},
+
+	resolve: {
+		extensions: ['.js', '.jsx']
 	},
 
 	devtool: "source-map"

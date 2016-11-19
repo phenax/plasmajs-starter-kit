@@ -1,72 +1,45 @@
 import React from 'react';
+import { Server } from 'plasmajs';
 import {
-	Server,
-	APIRoute,
 	Logger,
+	ServiceWorker,
 	StaticContentRouter
-} from 'plasmajs';
+} from 'plasmajs/middlewares';
 
-
-import AllRoutesWrapper from './routes/getRoutes.server.jsx';
+import AllApiRoutes from './routes/apiRoutes.jsx';
+import AllPageRoutes from './routes/getRoutes.server.jsx';
 import { HeadLayout } from './layouts/WrapperLayouts.jsx';
 
-
-// The app component
 export default class App extends React.Component {
 
-	// To specify the port name to run the program on
-	// (NOTE: You can also do an App.port= 8080)
-	static get port() { return 8080; }
-
-
-	constructor(p) {
-		super(p);
-
-		this._apiCallHandler= this._apiCallHandler.bind(this);
-	}
-
-
-	// API request handler for api routes
-	_apiCallHandler() {
-
-		// Some expensive promise that takes 400ms to resolve
-		return new Promise((resolve, reject) => {
-
-			setTimeout(() => {
-
-				const { method, url }= this.props.request;
-
-				resolve({ method, url });
-			}, 400);
-		});
-	}
-
+	static get port() { return 8080 }
 
 	render() {
-
-		// Server wrapper
-		//   - Middleware for static files
-		//   - API routes(its a middleware)
-		//   - Head layout(<head> tag and its contents)
-		//   - The router component and the routes
-		//   - Logger middleware
 		return (
-
 			<Server>
-
 				<StaticContentRouter {...this.props} dir='public' hasPrefix={true} compress={true} />
 
-				{ /* Move all API routes and their controllers to a seperate component */ }
-				<APIRoute {...this.props} method='GET'  path='/api/get'  controller={this._apiCallHandler} />
-				<APIRoute {...this.props} method='POST' path='/api/post' controller={this._apiCallHandler} />
+				{AllApiRoutes(this.props)}
 
-				<HeadLayout title='Get started with PlasmaJS' />
+				<HeadLayout title='First PlasmaJS App'>
+					{/*<ServiceWorker {...this.props} path='/sw.js'>
 
-				<AllRoutesWrapper {...this.props} />
+					</ServiceWorker>*/}
+				</HeadLayout>
 
-				<Logger {...this.props} color={true} />
+				{AllPageRoutes(this.props)}
 
+				<Logger {...this.props} color />
 			</Server>
 		);
 	}
-};
+
+	// Cluster configuration
+	// static get cluster() {
+	// 	return {
+	// 		count: require('os').cpus().length,
+	// 		master() { console.log('Master running') },
+	// 		notMaster() { console.log('Slave running') }
+	// 	}
+	// }
+}

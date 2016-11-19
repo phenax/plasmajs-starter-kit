@@ -35,11 +35,11 @@ export default class App extends React.Component {
 	}
 
 	// Cluster configuration
-	// static get cluster() {
-	// 	return {
-	// 		count: require('os').cpus().length,
-	// 		master() { console.log('Master running') },
-	// 		notMaster() { console.log('Slave running') }
-	// 	}
-	// }
+	static get cluster() {
+		return {
+			count: require('os').cpus().length,
+			master() { console.log('Master running') },
+			notMaster() { console.log('Slave running') }
+		}
+	}
 }

@@ -1,5 +1,6 @@
 
 # PlasmaJS Starter Kit
+[Note: Not up to date]
 A Starterkit for the [PlasmaJS framework](https://github.com/phenax/plasmajs)
 
 ## Stuff

@@ -1,5 +1,7 @@
 
 # PlasmaJS Starter Kit
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/phenax/plasmajs-starter-kit.svg)](https://greenkeeper.io/)
 [Note: Not up to date]
 A Starterkit for the [PlasmaJS framework](https://github.com/phenax/plasmajs)
 
